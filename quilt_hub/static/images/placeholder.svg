@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background -->
+  <rect width="200" height="200" fill="#f5e6d3"/>
+
+  <!-- Top-left triangle -->
+  <polygon points="0,0 100,0 0,100" fill="#4a2c2a"/>
+  <!-- Bottom-right triangle -->
+  <polygon points="200,100 200,200 100,200" fill="#4a2c2a"/>
+
+  <!-- Top-right triangle -->
+  <polygon points="100,0 200,0 200,100" fill="#c8956c"/>
+  <!-- Bottom-left triangle -->
+  <polygon points="0,100 100,200 0,200" fill="#c8956c"/>
+
+  <!-- Center square (rotated 45°) -->
+  <polygon points="100,60 140,100 100,140 60,100" fill="#fff" stroke="#4a2c2a" stroke-width="2"/>
+
+  <!-- Corner accent squares -->
+  <rect x="2"  y="2"  width="20" height="20" fill="#c8956c" opacity="0.6"/>
+  <rect x="178" y="2"  width="20" height="20" fill="#4a2c2a" opacity="0.6"/>
+  <rect x="2"  y="178" width="20" height="20" fill="#4a2c2a" opacity="0.6"/>
+  <rect x="178" y="178" width="20" height="20" fill="#c8956c" opacity="0.6"/>
+</svg>

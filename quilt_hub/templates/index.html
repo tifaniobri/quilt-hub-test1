@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Quilt Hub — Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Welcome to Quilt Hub</h1>
+  <p>
+    Your creative home for quilting inspiration, patterns, and tools.
+    Browse the gallery for design ideas, or use our tools to plan your
+    next quilting project with ease.
+  </p>
+  <div class="hero-actions">
+    <a class="btn" href="{{ url_for('gallery') }}">Browse Gallery</a>
+    <a class="btn btn-outline" href="{{ url_for('tools') }}">Explore Tools</a>
+  </div>
+</section>
+{% endblock %}

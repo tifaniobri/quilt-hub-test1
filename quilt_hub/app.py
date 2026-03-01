@@ -26,6 +26,7 @@ def tools():
 @app.route("/tools/color-palette", methods=["GET", "POST"])
 def color_palette():
     pairs = []
+    mode = "auto"
 
     if request.method == "POST":
         mode = request.form.get("mode", "auto")

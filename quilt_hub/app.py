@@ -32,8 +32,9 @@ def color_palette():
         mode = request.form.get("mode", "auto")
         files = request.files.getlist("images")
 
-        upload_dir = Path("quilt_hub/static/uploads")
-        processed_dir = Path("quilt_hub/static/processed")
+        static_dir = Path(app.static_folder)  # works locally and on Render
+        upload_dir = static_dir / "uploads"
+        processed_dir = static_dir / "processed"
         upload_dir.mkdir(parents=True, exist_ok=True)
         processed_dir.mkdir(parents=True, exist_ok=True)
 

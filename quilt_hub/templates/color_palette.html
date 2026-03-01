@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Color Palette Tool</title>
+  </head>
+  <body>
+    <h1>Color Palette Tool</h1>
+    <p>Upload images to see a grayscale + black/white/grey palette version.</p>
+
+    <form action="/tools/color-palette" method="post" enctype="multipart/form-data">
+      <label>Select one or more images:</label><br />
+      <input type="file" name="images" accept="image/*" multiple required />
+      <div id="selected-files" style="margin-top: 8px; font-size: 0.95em;"></div>
+      <br />
+      <label for="mode">Mode:</label>
+      <select name="mode" id="mode">
+        <option value="auto" {% if mode == "auto" %}selected{% endif %}>Auto (recommended)</option>
+        <option value="gentle" {% if mode == "gentle" %}selected{% endif %}>Gentle (light fabrics)</option>
+        <option value="strong" {% if mode == "strong" %}selected{% endif %}>Strong (more contrast)</option>      </select>
+      <br /><br />
+      <button type="submit">Upload</button>
+    </form>
+    {% if pairs and pairs|length > 0 %}
+      <h2>Results</h2>
+
+      {% for p in pairs %}
+        <div style="display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start;">
+          <div>
+            <div><strong>Original</strong></div>
+            <img src="{{ url_for('static', filename=p.original) }}" style="max-width: 320px; height: auto;" />
+          </div>
+
+          <div>
+            <div><strong>Black / Grey / White</strong></div>
+            <img src="{{ url_for('static', filename=p.bw) }}" style="max-width: 320px; height: auto;" />
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+    <script>
+      const input = document.querySelector('input[type="file"][name="images"]');
+      const out = document.getElementById('selected-files');
+
+      if (input) {
+        input.addEventListener('change', () => {
+          if (!input.files || input.files.length === 0) {
+            out.textContent = '';
+            return;
+          }
+          const names = Array.from(input.files).map(f => f.name);
+          out.textContent = `Selected: ${names.join(', ')}`;
+        });
+      }
+    </script>
+
+</body>
+</html>
+  </body>
+</html>

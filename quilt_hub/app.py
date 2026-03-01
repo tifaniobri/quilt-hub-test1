@@ -5,9 +5,15 @@ from werkzeug.utils import secure_filename
 import uuid
 from PIL import Image, ImageOps, ImageFilter
 import numpy as np
+ALLOWED_EXTS = {"png", "jpg", "jpeg", "webp"}
+def allowed_file(filename: str) -> bool:
+    if "." not in filename:
+        return False
+    ext = filename.rsplit(".", 1)[1].lower()
+    return ext in ALLOWED_EXTS
 
 app = Flask(__name__)
-
+app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024  # 8 MB
 
 @app.route("/")
 def index():
@@ -41,7 +47,9 @@ def color_palette():
         for f in files:
             if not f or not f.filename:
                 continue
-
+            if not allowed_file(f.filename):
+                continue
+                
             # Make filename safe + unique
             original_name = secure_filename(f.filename)
             stem, dot, ext = original_name.rpartition(".")
